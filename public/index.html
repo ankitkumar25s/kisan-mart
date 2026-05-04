@@ -1,1369 +1,200 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Hind:wght@400;500;600&display=swap"
-    rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0
-    }
-
-    :root {
-      --green: #2d7a3a;
-      --green-light: #e8f5e9;
-      --green-mid: #4caf50;
-      --amber: #f57c00;
-      --amber-light: #fff3e0;
-      --bg: #f5f8f2;
-      --white: #fff;
-      --text: #1a2e1a;
-      --text-muted: #5c6e5c;
-      --border: #d0e8d0;
-      --radius: 12px;
-      --radius-sm: 8px;
-    }
-
-    body {
-      font-family: 'Hind', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: 'Baloo 2', sans-serif
-    }
-
-    nav {
-      background: var(--green);
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2)
-    }
-
-    .nav-brand {
-      color: #fff;
-      font-family: 'Baloo 2', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 8px
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px
-    }
-
-    .nav-btn {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #fff;
-      padding: 6px 14px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 13px;
-      font-family: 'Hind', sans-serif;
-      font-weight: 500
-    }
-
-    .cart-btn {
-      background: var(--amber);
-      border: none;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-family: 'Hind', sans-serif
-    }
-
-    .cart-count {
-      background: #fff;
-      color: var(--amber);
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #1b5e20 0%, #2d7a3a 60%, #388e3c 100%);
-      padding: 36px 20px;
-      text-align: center;
-      color: #fff
-    }
-
-    .hero h1 {
-      font-size: 28px;
-      font-weight: 800;
-      margin-bottom: 6px
-    }
-
-    .hero p {
-      font-size: 14px;
-      opacity: 0.9;
-      margin-bottom: 18px
-    }
-
-    .search-bar {
-      display: flex;
-      max-width: 520px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 30px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2)
-    }
-
-    .search-bar input {
-      flex: 1;
-      padding: 11px 18px;
-      border: none;
-      outline: none;
-      font-size: 14px;
-      font-family: 'Hind', sans-serif;
-      color: var(--text)
-    }
-
-    .search-bar select {
-      padding: 11px 8px;
-      border: none;
-      border-left: 1px solid #e0e0e0;
-      background: #f9f9f9;
-      font-size: 13px;
-      outline: none;
-      cursor: pointer;
-      font-family: 'Hind', sans-serif
-    }
-
-    .search-bar button {
-      background: var(--green);
-      color: #fff;
-      border: none;
-      padding: 11px 18px;
-      cursor: pointer;
-      font-size: 16px
-    }
-
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      padding: 14px 20px;
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap
-    }
-
-    .stat {
-      text-align: center
-    }
-
-    .stat-num {
-      font-family: 'Baloo 2', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--green)
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--text-muted)
-    }
-
-    .offers {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding: 16px 20px;
-      scrollbar-width: none
-    }
-
-    .offer-card {
-      flex-shrink: 0;
-      color: #fff;
-      border-radius: var(--radius);
-      padding: 14px 18px;
-      min-width: 200px
-    }
-
-    .offer-title {
-      font-family: 'Baloo 2', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 3px
-    }
-
-    .offer-sub {
-      font-size: 12px;
-      opacity: 0.85
-    }
-
-    .offer-code {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 6px;
-      padding: 3px 8px;
-      font-size: 11px;
-      font-weight: 700;
-      margin-top: 8px;
-      display: inline-block;
-      letter-spacing: 1px
-    }
-
-    .section {
-      padding: 20px
-    }
-
-    .section-title {
-      font-size: 19px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px
-    }
-
-    .cats {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 18px
-    }
-
-    .cat-btn {
-      padding: 7px 16px;
-      border-radius: 20px;
-      border: 1.5px solid var(--border);
-      background: #fff;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 500;
-      font-family: 'Hind', sans-serif;
-      color: var(--text-muted);
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 5px
-    }
-
-    .cat-btn.active,
-    .cat-btn:hover {
-      background: var(--green);
-      color: #fff;
-      border-color: var(--green)
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-      gap: 16px
-    }
-
-    .product-card {
-      background: #fff;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative
-    }
-
-    .product-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(45, 122, 58, 0.15)
-    }
-
-    .product-badge {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      background: var(--amber);
-      color: #fff;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 10px;
-      font-family: 'Hind', sans-serif;
-      z-index: 2
-    }
-
-    .product-badge.org {
-      background: #2e7d32
-    }
-
-    .product-badge.new {
-      background: #0277bd
-    }
-
-    .product-img-wrap {
-      height: 140px;
-      overflow: hidden;
-      position: relative;
-      background: #f0f4f0
-    }
-
-    .product-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s
-    }
-
-    .product-card:hover .product-img-wrap img {
-      transform: scale(1.05)
-    }
-
-    .img-fallback {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 52px;
-      background: var(--green-light)
-    }
-
-    .product-info {
-      padding: 11px
-    }
-
-    .product-name {
-      font-family: 'Baloo 2', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 3px;
-      line-height: 1.3
-    }
-
-    .product-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 7px;
-      line-height: 1.4
-    }
-
-    .product-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between
-    }
-
-    .product-price {
-      font-family: 'Baloo 2', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--green)
-    }
-
-    .product-unit {
-      font-size: 10px;
-      color: var(--text-muted)
-    }
-
-    .add-btn {
-      background: var(--green);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 6px 12px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      font-family: 'Hind', sans-serif;
-      transition: all 0.2s;
-      white-space: nowrap
-    }
-
-    .add-btn:hover {
-      background: #1b5e20
-    }
-
-    .add-btn.added {
-      background: var(--amber)
-    }
-
-    .rating {
-      font-size: 11px;
-      color: #f57c00;
-      margin-bottom: 5px
-    }
-
-    /* PANELS */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 200;
-      display: none;
-      align-items: flex-start;
-      justify-content: flex-end
-    }
-
-    .overlay.show {
-      display: flex
-    }
-
-    .panel {
-      background: #fff;
-      width: 340px;
-      max-width: 100%;
-      height: 100vh;
-      overflow-y: auto;
-      padding: 20px;
-      animation: slideIn 0.3s ease
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%)
-      }
-
-      to {
-        transform: translateX(0)
-      }
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border)
-    }
-
-    .panel-title {
-      font-family: 'Baloo 2', sans-serif;
-      font-size: 18px;
-      font-weight: 700
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-      color: var(--text-muted)
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border)
-    }
-
-    .cart-item-img {
-      width: 54px;
-      height: 54px;
-      border-radius: 8px;
-      overflow: hidden;
-      flex-shrink: 0;
-      background: var(--green-light)
-    }
-
-    .cart-item-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover
-    }
-
-    .cart-item-img-fallback {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px
-    }
-
-    .cart-item-info {
-      flex: 1
-    }
-
-    .cart-item-name {
-      font-weight: 600;
-      font-size: 13px;
-      margin-bottom: 3px;
-      font-family: 'Baloo 2', sans-serif
-    }
-
-    .cart-item-price {
-      font-size: 13px;
-      color: var(--green);
-      font-weight: 600
-    }
-
-    .qty-ctrl {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 6px
-    }
-
-    .qty-btn {
-      background: var(--green-light);
-      border: none;
-      color: var(--green);
-      width: 24px;
-      height: 24px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center
-    }
-
-    .qty-num {
-      font-size: 13px;
-      font-weight: 600;
-      min-width: 20px;
-      text-align: center
-    }
-
-    .remove-btn {
-      background: none;
-      border: none;
-      color: #e53935;
-      cursor: pointer;
-      font-size: 13px;
-      margin-left: auto
-    }
-
-    .cart-total {
-      margin-top: 16px;
-      padding: 14px;
-      background: var(--green-light);
-      border-radius: var(--radius-sm)
-    }
-
-    .total-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      margin-bottom: 6px
-    }
-
-    .total-grand {
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--green);
-      font-family: 'Baloo 2', sans-serif
-    }
-
-    .pay-methods {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin: 14px 0
-    }
-
-    .pay-opt {
-      border: 2px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 11px 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: all 0.2s;
-      font-family: 'Hind', sans-serif
-    }
-
-    .pay-opt.selected {
-      border-color: var(--green);
-      background: var(--green-light)
-    }
-
-    .pay-icon {
-      font-size: 22px
-    }
-
-    .pay-label {
-      font-weight: 600;
-      font-size: 14px
-    }
-
-    .pay-sub {
-      font-size: 11px;
-      color: var(--text-muted)
-    }
-
-    .track-steps {
-      margin: 16px 0
-    }
-
-    .track-step {
-      display: flex;
-      gap: 12px;
-      padding: 10px 0;
-      position: relative
-    }
-
-    .track-step::before {
-      content: '';
-      position: absolute;
-      left: 14px;
-      top: 34px;
-      bottom: -10px;
-      width: 2px;
-      background: var(--border)
-    }
-
-    .track-step:last-child::before {
-      display: none
-    }
-
-    .step-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      flex-shrink: 0;
-      z-index: 1
-    }
-
-    .step-dot.done {
-      background: var(--green);
-      color: #fff
-    }
-
-    .step-dot.active {
-      background: var(--amber);
-      color: #fff;
-      animation: pulse 1.5s infinite
-    }
-
-    @keyframes pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 0 rgba(245, 124, 0, 0.4)
-      }
-
-      50% {
-        box-shadow: 0 0 0 6px rgba(245, 124, 0, 0)
-      }
-    }
-
-    .step-name {
-      font-weight: 600;
-      font-size: 13px;
-      font-family: 'Baloo 2', sans-serif
-    }
-
-    .step-time {
-      font-size: 11px;
-      color: var(--text-muted)
-    }
-
-    .auth-tabs {
-      display: flex;
-      border-bottom: 2px solid var(--border);
-      margin-bottom: 18px
-    }
-
-    .auth-tab {
-      flex: 1;
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      color: var(--text-muted);
-      border-bottom: 3px solid transparent;
-      margin-bottom: -2px;
-      transition: all 0.2s;
-      font-family: 'Hind', sans-serif
-    }
-
-    .auth-tab.active {
-      color: var(--green);
-      border-bottom-color: var(--green)
-    }
-
-    .form-group {
-      margin-bottom: 13px
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 5px;
-      color: var(--text-muted)
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 10px 13px;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-size: 14px;
-      font-family: 'Hind', sans-serif;
-      outline: none;
-      transition: border 0.2s
-    }
-
-    .form-group input:focus {
-      border-color: var(--green)
-    }
-
-    .btn-primary {
-      width: 100%;
-      background: var(--green);
-      color: #fff;
-      border: none;
-      padding: 12px;
-      border-radius: var(--radius-sm);
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: 'Baloo 2', sans-serif;
-      margin-top: 4px
-    }
-
-    .btn-primary:hover {
-      background: #1b5e20
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--green);
-      color: #fff;
-      padding: 11px 18px;
-      border-radius: var(--radius-sm);
-      font-size: 13px;
-      font-family: 'Hind', sans-serif;
-      font-weight: 500;
-      z-index: 999;
-      animation: toastIn 0.3s ease;
-      display: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      max-width: 280px
-    }
-
-    .toast.show {
-      display: block
-    }
-
-    .hidden {
-      display: none !important
-    }
-
-    @keyframes toastIn {
-      from {
-        transform: translateY(20px);
-        opacity: 0
-      }
-
-      to {
-        transform: translateY(0);
-        opacity: 1
-      }
-    }
-
-    .empty {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--text-muted)
-    }
-  </style>
+  <meta name="description" content="KisanMart farming supplies marketplace">
+  <title>KisanMart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="KisanMart home">
+      <span class="brand-mark" aria-hidden="true">KM</span>
+      <span>KisanMart</span>
+    </a>
 
-  <nav>
-    <div class="nav-brand"><span>🌱</span>KisanMart</div>
-    <div class="nav-actions">
-      <div id="userGreeting" class="nav-btn hidden"></div>
-      <button class="nav-btn" id="loginNavBtn" onclick="openPanel('login')">👨‍🌾 Login</button>
-      <button class="nav-btn hidden" id="logoutBtn" onclick="logout()">Logout</button>
-      <button class="nav-btn" onclick="openPanel('track')">📦 Track</button>
-      <button class="cart-btn" onclick="openCart()">
-        🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    <nav class="header-actions" aria-label="Primary">
+      <span id="userGreeting" class="user-greeting hidden"></span>
+      <button id="loginNavBtn" class="ghost-button" type="button" onclick="openPanel('login')">Login</button>
+      <button id="logoutBtn" class="ghost-button hidden" type="button" onclick="logout()">Logout</button>
+      <button class="ghost-button" type="button" onclick="openPanel('track')">Track Order</button>
+      <button class="cart-button" type="button" onclick="openCart()">
+        Cart <span id="cartCount" class="cart-count">0</span>
       </button>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <div class="hero">
-    <h1>🌾 Kisan Ka Apna Bazar</h1>
-    <p>Khaad, Beej, Pesticide, aur Farming Tools — sab kuch ek jagah</p>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search karo... (Urea, Gehu Beej, Sprayer...)"
-        oninput="filterProducts()">
-      <select id="catFilter" onchange="filterProducts()">
-        <option value="">All</option>
-        <option value="khaad">Khaad</option>
-        <option value="beej">Beej</option>
-        <option value="pesticide">Pesticide</option>
-        <option value="tools">Tools</option>
-      </select>
-      <button onclick="filterProducts()">🔍</button>
-    </div>
-  </div>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Seeds, fertilizer, pesticide, and tools</p>
+        <h1>Farm essentials delivered with clarity.</h1>
+        <p class="hero-text">Browse trusted agricultural supplies, manage your cart, place orders, and track delivery
+          from one simple KisanMart dashboard.</p>
+      </div>
 
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">50,000+</div>
-      <div class="stat-label">Farmers</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">500+</div>
-      <div class="stat-label">Products</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">24hr</div>
-      <div class="stat-label">Delivery</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Original</div>
-    </div>
-  </div>
+      <form class="search-panel" onsubmit="event.preventDefault(); loadProducts();">
+        <label class="search-label" for="searchInput">Search products</label>
+        <div class="search-row">
+          <input id="searchInput" type="search" placeholder="Search Urea, wheat seed, sprayer..."
+            oninput="debounceSearch()">
+          <select id="catFilter" onchange="setCat(this.value)">
+            <option value="">All Categories</option>
+            <option value="khaad">Khaad</option>
+            <option value="beej">Beej</option>
+            <option value="pesticide">Pesticide</option>
+            <option value="tools">Tools</option>
+          </select>
+          <button class="primary-button" type="submit">Search</button>
+        </div>
+      </form>
+    </section>
 
-  <div class="offers">
-    <div class="offer-card" style="background:linear-gradient(135deg,#1b5e20,#4caf50)">
-      <div class="offer-title">Pehli Order 15% Off</div>
-      <div class="offer-sub">Saare products par</div>
-      <div class="offer-code">KISAN15</div>
-    </div>
-    <div class="offer-card" style="background:linear-gradient(135deg,#e65100,#ff9800)">
-      <div class="offer-title">Khaad Bundle Deal</div>
-      <div class="offer-sub">3+ bags = 20% off</div>
-      <div class="offer-code">KHAAD20</div>
-    </div>
-    <div class="offer-card" style="background:linear-gradient(135deg,#0277bd,#29b6f6)">
-      <div class="offer-title">Free Delivery</div>
-      <div class="offer-sub">₹999+ ke order par</div>
-      <div class="offer-code">FREEDEL</div>
-    </div>
-  </div>
+    <section class="metrics" aria-label="Store highlights">
+      <div>
+        <strong>500+</strong>
+        <span>Products</span>
+      </div>
+      <div>
+        <strong>24 hr</strong>
+        <span>Fast delivery</span>
+      </div>
+      <div>
+        <strong>100%</strong>
+        <span>Original stock</span>
+      </div>
+      <div>
+        <strong>COD</strong>
+        <span>Payment support</span>
+      </div>
+    </section>
 
-  <div class="section">
-    <h2 class="section-title">🛒 Hamare Products</h2>
-    <div class="cats">
-      <button class="cat-btn active" onclick="setCat('',this)">🌿 Sab</button>
-      <button class="cat-btn" onclick="setCat('khaad',this)">🟤 Khaad</button>
-      <button class="cat-btn" onclick="setCat('beej',this)">🌱 Beej</button>
-      <button class="cat-btn" onclick="setCat('pesticide',this)">🧪 Pesticide</button>
-      <button class="cat-btn" onclick="setCat('tools',this)">🔧 Tools</button>
-    </div>
-    <div class="products-grid" id="productsGrid"></div>
-  </div>
+    <section class="content-section">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Shop</p>
+          <h2>Available Products</h2>
+        </div>
+        <select id="sortSelect" class="sort-select" onchange="setSort(this.value)" aria-label="Sort products">
+          <option value="">Default Sort</option>
+          <option value="popular">Most Popular</option>
+          <option value="rating">Top Rated</option>
+          <option value="price_asc">Price Low to High</option>
+          <option value="price_desc">Price High to Low</option>
+        </select>
+      </div>
 
-  <!-- CART -->
-  <div class="overlay" id="cartOverlay" onclick="closeOnBg(event,'cart')">
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">🛒 Aapka Cart</span><button class="close-btn"
-          onclick="closePanel('cart')">✕</button></div>
+      <div class="category-tabs" role="list" aria-label="Product categories">
+        <button class="category-tab active" type="button" onclick="setCat('', this)">All</button>
+        <button class="category-tab" type="button" onclick="setCat('khaad', this)">Khaad</button>
+        <button class="category-tab" type="button" onclick="setCat('beej', this)">Beej</button>
+        <button class="category-tab" type="button" onclick="setCat('pesticide', this)">Pesticide</button>
+        <button class="category-tab" type="button" onclick="setCat('tools', this)">Tools</button>
+      </div>
+
+      <div id="productsLoading" class="state-message">Loading products...</div>
+      <div id="productsGrid" class="products-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <div id="cartOverlay" class="overlay" onclick="closeOnBg(event, 'cart')">
+    <aside class="panel" aria-label="Shopping cart">
+      <div class="panel-header">
+        <h2>Your Cart</h2>
+        <button class="icon-button" type="button" onclick="closePanel('cart')" aria-label="Close cart">x</button>
+      </div>
       <div id="cartItems"></div>
       <div id="cartFooter"></div>
-    </div>
+    </aside>
   </div>
 
-  <!-- CHECKOUT -->
-  <div class="overlay" id="checkoutOverlay" onclick="closeOnBg(event,'checkout')">
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">💳 Checkout</span><button class="close-btn"
-          onclick="closePanel('checkout')">✕</button></div>
-      <div class="form-group"><label>Gaon / Shahar</label><input id="co_village" placeholder="Sehore, Madhya Pradesh" />
+  <div id="checkoutOverlay" class="overlay" onclick="closeOnBg(event, 'checkout')">
+    <aside class="panel" aria-label="Checkout">
+      <div class="panel-header">
+        <h2>Checkout</h2>
+        <button class="icon-button" type="button" onclick="closePanel('checkout')"
+          aria-label="Close checkout">x</button>
       </div>
-      <div class="form-group"><label>City / District</label><input id="co_city" placeholder="Sehore" /></div>
-      <div class="form-group"><label>State</label><input id="co_state" placeholder="Madhya Pradesh" /></div>
-      <div class="form-group"><label>Pin Code</label><input id="co_pincode" placeholder="466001" maxlength="6" /></div>
-      <div class="form-group"><label>Mobile Number</label><input id="co_mobile" placeholder="9876543210"
-          maxlength="10" /></div>
-      <h3 style="font-size:15px;margin:14px 0 8px">Payment Method</h3>
-      <div class="pay-methods">
-        <div class="pay-opt selected" onclick="selectPay(this)"><span class="pay-icon">📲</span>
-          <div>
-            <div class="pay-label">UPI</div>
-            <div class="pay-sub">PhonePe, GPay, Paytm</div>
-          </div>
-        </div>
-        <div class="pay-opt" onclick="selectPay(this)"><span class="pay-icon">💵</span>
-          <div>
-            <div class="pay-label">Cash on Delivery</div>
-            <div class="pay-sub">Delivery par paisa do</div>
-          </div>
-        </div>
-        <div class="pay-opt" onclick="selectPay(this)"><span class="pay-icon">💳</span>
-          <div>
-            <div class="pay-label">Debit / Credit Card</div>
-            <div class="pay-sub">Sare card accepted</div>
-          </div>
-        </div>
+
+      <div class="form-grid">
+        <label>Village or Town <input id="co_village" autocomplete="address-level3" placeholder="Sehore"></label>
+        <label>City or District <input id="co_city" autocomplete="address-level2" placeholder="Sehore"></label>
+        <label>State <input id="co_state" autocomplete="address-level1" placeholder="Madhya Pradesh"></label>
+        <label>Pin Code <input id="co_pincode" inputmode="numeric" maxlength="6" autocomplete="postal-code"
+            placeholder="466001"></label>
+        <label>Mobile Number <input id="co_mobile" inputmode="tel" maxlength="10" autocomplete="tel"
+            placeholder="9876543210"></label>
       </div>
-      <button class="btn-primary" onclick="placeOrder()">✅ Order Place Karo</button>
-    </div>
+
+      <h3 class="panel-subtitle">Payment Method</h3>
+      <div class="payment-options">
+        <button class="payment-option selected" type="button" data-pay="upi" onclick="selectPay(this)">UPI</button>
+        <button class="payment-option" type="button" data-pay="cod" onclick="selectPay(this)">Cash on Delivery</button>
+        <button class="payment-option" type="button" data-pay="card" onclick="selectPay(this)">Card</button>
+      </div>
+
+      <button class="primary-button full-width" type="button" onclick="placeOrder()">Place Order</button>
+    </aside>
   </div>
 
-  <!-- TRACKING -->
-  <div class="overlay" id="trackOverlay" onclick="closeOnBg(event,'track')">
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">📦 Order Tracking</span><button class="close-btn"
-          onclick="closePanel('track')">✕</button></div>
-      <div class="form-group"><label>Order ID daalo</label><input id="trackInput" placeholder="KM-2024-00142" /></div>
-      <button class="btn-primary" onclick="trackOrder()">Track Karo 🔍</button>
-      <div id="trackResult"></div>
-    </div>
+  <div id="trackOverlay" class="overlay" onclick="closeOnBg(event, 'track')">
+    <aside class="panel" aria-label="Track order">
+      <div class="panel-header">
+        <h2>Track Order</h2>
+        <button class="icon-button" type="button" onclick="closePanel('track')" aria-label="Close tracking">x</button>
+      </div>
+      <label class="stacked-label">Order ID <input id="trackInput" placeholder="KM-12345678"></label>
+      <button class="primary-button full-width" type="button" onclick="trackOrder()">Track</button>
+      <div id="trackResult" class="track-result"></div>
+    </aside>
   </div>
 
-  <!-- LOGIN -->
-  <div class="overlay" id="loginOverlay" onclick="closeOnBg(event,'login')">
-    <div class="panel">
-      <div class="panel-header"><span class="panel-title">👨‍🌾 Farmer Login</span><button class="close-btn"
-          onclick="closePanel('login')">✕</button></div>
+  <div id="loginOverlay" class="overlay" onclick="closeOnBg(event, 'login')">
+    <aside class="panel" aria-label="Login or sign up">
+      <div class="panel-header">
+        <h2>Farmer Account</h2>
+        <button class="icon-button" type="button" onclick="closePanel('login')" aria-label="Close login">x</button>
+      </div>
+
       <div class="auth-tabs">
-        <div class="auth-tab active" onclick="switchTab('login',this)">Login</div>
-        <div class="auth-tab" onclick="switchTab('signup',this)">Sign Up</div>
+        <button class="auth-tab active" type="button" onclick="switchTab('login', this)">Login</button>
+        <button class="auth-tab" type="button" onclick="switchTab('signup', this)">Sign Up</button>
       </div>
-      <div id="loginForm">
-        <div class="form-group"><label>Mobile Number</label><input id="l_mobile" placeholder="9876543210" type="tel" />
-        </div>
-        <div class="form-group"><label>Password</label><input id="l_password" placeholder="••••••••" type="password" />
-        </div>
-        <button class="btn-primary" id="loginBtn" onclick="doLogin()">Login Karo</button>
-        <div id="loginError" class="error-msg" style="display:none"></div>
+
+      <div id="loginForm" class="form-grid">
+        <label>Mobile Number <input id="l_mobile" type="tel" inputmode="tel" autocomplete="tel"
+            placeholder="9876543210"></label>
+        <label>Password <input id="l_password" type="password" autocomplete="current-password"
+            placeholder="Password"></label>
+        <button id="loginBtn" class="primary-button full-width" type="button" onclick="doLogin()">Login</button>
       </div>
-      <div id="signupForm" style="display:none">
-        <div class="form-group"><label>Poora Naam</label><input id="s_name" placeholder="Ramesh Kumar" /></div>
-        <div class="form-group"><label>Mobile Number</label><input id="s_mobile" placeholder="9876543210" type="tel" />
-        </div>
-        <div class="form-group"><label>Gaon / Tehsil</label><input id="s_village" placeholder="Sehore, MP" /></div>
-        <div class="form-group"><label>State</label><input id="s_state" placeholder="Madhya Pradesh" /></div>
-        <div class="form-group"><label>Pin Code</label><input id="s_pincode" placeholder="466001" maxlength="6" /></div>
-        <div class="form-group"><label>Khet ki Zameen (Acres)</label><input id="s_land" placeholder="5" type="number" />
-        </div>
-        <div class="form-group"><label>Password</label><input id="s_password" placeholder="••••••••" type="password" />
-        </div>
-        <button class="btn-primary" id="signupBtn" onclick="doSignup()">Account Banao</button>
-        <div id="signupError" class="error-msg" style="display:none"></div>
+
+      <div id="signupForm" class="form-grid hidden">
+        <label>Full Name <input id="s_name" autocomplete="name" placeholder="Ramesh Kumar"></label>
+        <label>Mobile Number <input id="s_mobile" type="tel" inputmode="tel" autocomplete="tel"
+            placeholder="9876543210"></label>
+        <label>Village <input id="s_village" autocomplete="address-level3" placeholder="Sehore"></label>
+        <label>State <input id="s_state" autocomplete="address-level1" placeholder="Madhya Pradesh"></label>
+        <label>Pin Code <input id="s_pincode" inputmode="numeric" maxlength="6" autocomplete="postal-code"
+            placeholder="466001"></label>
+        <label>Land in Acres <input id="s_land" type="number" min="0" step="0.1" placeholder="5"></label>
+        <label>Password <input id="s_password" type="password" autocomplete="new-password"
+            placeholder="Password"></label>
+        <button id="signupBtn" class="primary-button full-width" type="button" onclick="doSignup()">Create
+          Account</button>
       </div>
-    </div>
+    </aside>
   </div>
 
-  <div class="toast" id="toast"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  ﻿
-  <script>
-    const API_BASE = 'http://localhost:5000/api';
-    let currentCategory = '';
-    let searchTerm = '';
-    let currentSort = '';
-    let user = JSON.parse(localStorage.getItem('km_user') || 'null');
-    let toastTimer = null;
-
-    function showToast(msg, time = 2800) {
-      const t = document.getElementById('toast');
-      if (!t) return;
-      t.textContent = msg;
-      t.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => t.classList.remove('show'), time);
-    }
-
-    function setSession(u) {
-      user = u;
-      if (u) localStorage.setItem('km_user', JSON.stringify(u));
-      else localStorage.removeItem('km_user');
-      updateAuthUI();
-      updateCartCount();
-    }
-
-    function updateAuthUI() {
-      const ug = document.getElementById('userGreeting');
-      const loginBtn = document.getElementById('loginNavBtn');
-      const logoutBtn = document.getElementById('logoutBtn');
-      if (!ug || !loginBtn || !logoutBtn) return;
-      if (user) {
-        ug.textContent = `Namaste, ${user.name}`;
-        ug.classList.remove('hidden');
-        loginBtn.classList.add('hidden');
-        logoutBtn.classList.remove('hidden');
-      } else {
-        ug.classList.add('hidden');
-        loginBtn.classList.remove('hidden');
-        logoutBtn.classList.add('hidden');
-      }
-    }
-
-    async function fetchJSON(url, opts = {}) {
-      try {
-        const res = await fetch(url, opts);
-        const txt = await res.text();
-        let data = {};
-        try {
-          data = txt ? JSON.parse(txt) : {};
-        } catch (parseErr) {
-          console.error('fetchJSON parse error', { url, text: txt, parseErr });
-        }
-        if (!res.ok) {
-          console.error('API error response', { url, status: res.status, statusText: res.statusText, body: txt, parsed: data });
-          throw new Error((data && data.error) || res.statusText || `HTTP ${res.status}`);
-        }
-        console.log('API success response', { url, status: res.status, data });
-        return data;
-      } catch (err) {
-        console.error('fetchJSON network/error', { url, err });
-        throw err;
-      }
-    }
-
-    async function loadProducts() {
-      const grid = document.getElementById('productsGrid');
-      if (!grid) return;
-      grid.innerHTML = '<div class="empty" style="grid-column:1/-1">Loading products...</div>';
-      const params = new URLSearchParams();
-      if (searchTerm) params.set('search', searchTerm);
-      if (currentCategory) params.set('category', currentCategory);
-      if (currentSort) params.set('sort', currentSort);
-      try {
-        const data = await fetchJSON(`${API_BASE}/products?${params.toString()}`);
-        renderProducts(data.products || []);
-      } catch (err) {
-        grid.innerHTML = '<div class="empty" style="grid-column:1/-1">Product load failed.</div>';
-        showToast('Product load failed: ' + err.message);
-      }
-    }
-
-    function renderProducts(products) {
-      const grid = document.getElementById('productsGrid');
-      if (!grid) return;
-      if (!products.length) {
-        grid.innerHTML = '<div class="empty" style="grid-column:1/-1">Koi product nahi mila.</div>';
-        return;
-      }
-      grid.innerHTML = products.map((p) => `
-    <div class="product-card">
-      <div class="product-img-wrap"><div class="img-fallback" style="display:flex;align-items:center;justify-content:center;font-size:32px">🌿</div></div>
-      <div class="product-info">
-        <div class="product-name">${escapeHtml(p.name)}</div>
-        <div class="rating">${'★'.repeat(Math.floor(p.rating || 0))}${'☆'.repeat(5 - Math.floor(p.rating || 0))} ${p.rating || '-'}</div>
-        <div class="product-desc">${escapeHtml(p.description || '')}</div>
-        <div class="product-footer">
-          <div><div class="product-price">${p.price}</div><div class="product-unit">per unit</div></div>
-          <button class="add-btn" id="btn-${p.id}" onclick="addToCart(${p.id})">+ Cart</button>
-        </div>
-      </div>
-    </div>`).join('');
-    }
-
-    function escapeHtml(s) {
-      return String(s || '').replace(/[&<>\"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', "'": '&#39;' })[c]);
-    }
-
-    function filterProducts() {
-      searchTerm = document.getElementById('searchInput').value.trim();
-      currentCategory = document.getElementById('catFilter').value || currentCategory;
-      loadProducts();
-    }
-
-    function setCat(cat, btnEl) {
-      currentCategory = cat;
-      document.querySelectorAll('.cat-btn').forEach((b) => b.classList.remove('active'));
-      btnEl && btnEl.classList.add('active');
-      document.getElementById('catFilter').value = cat;
-      loadProducts();
-    }
-
-    function openPanel(name) {
-      const el = document.getElementById(name + 'Overlay');
-      if (el) {
-        el.classList.add('show');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closePanel(name) {
-      const el = document.getElementById(name + 'Overlay');
-      if (el) {
-        el.classList.remove('show');
-        document.body.style.overflow = '';
-      }
-    }
-
-    function closeOnBg(e, name) {
-      if (e.target.id === name + 'Overlay') closePanel(name);
-    }
-
-    async function doLogin() {
-      const mobile = document.getElementById('l_mobile').value.trim();
-      const password = document.getElementById('l_password').value;
-      const loginError = document.getElementById('loginError');
-      loginError.style.display = 'none';
-      if (!mobile || !password) return showToast('Mobile aur password chahiye');
-      const btn = document.getElementById('loginBtn');
-      btn.disabled = true;
-      try {
-        const data = await fetchJSON(`${API_BASE}/auth/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mobile, password })
-        });
-        setSession(data.user);
-        showToast('Login successful');
-        closePanel('login');
-        loadProducts();
-      } catch (err) {
-        loginError.textContent = err.message;
-        loginError.style.display = 'block';
-        showToast(err.message);
-      } finally {
-        btn.disabled = false;
-      }
-    }
-
-    async function doSignup() {
-      const name = document.getElementById('s_name').value.trim();
-      const mobile = document.getElementById('s_mobile').value.trim();
-      const password = document.getElementById('s_password').value;
-      const village = document.getElementById('s_village').value.trim();
-      const state = document.getElementById('s_state').value.trim();
-      const pincode = document.getElementById('s_pincode').value.trim();
-      const land = Number(document.getElementById('s_land').value || 0);
-      const signupError = document.getElementById('signupError');
-      signupError.style.display = 'none';
-      if (!name || !mobile || !password) return showToast('Name, mobile aur password chahiye');
-      const btn = document.getElementById('signupBtn');
-      btn.disabled = true;
-      try {
-        const data = await fetchJSON(`${API_BASE}/auth/signup`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, mobile, password, village, state, pincode, land })
-        });
-        setSession(data.user);
-        showToast('Signup successful');
-        closePanel('login');
-        loadProducts();
-      } catch (err) {
-        signupError.textContent = err.message;
-        signupError.style.display = 'block';
-        showToast(err.message);
-      } finally {
-        btn.disabled = false;
-      }
-    }
-
-    function logout() {
-      setSession(null);
-      showToast('Logged out');
-    }
-
-    async function updateCartCount() {
-      const el = document.getElementById('cartCount');
-      if (!el) return;
-      if (!user) {
-        el.textContent = '0';
-        return;
-      }
-      try {
-        const data = await fetchJSON(`${API_BASE}/cart?mobile=${encodeURIComponent(user.mobile)}`);
-        el.textContent = (data.count || (data.items || []).length || 0);
-      } catch (err) {
-        el.textContent = '0';
-      }
-    }
-
-    async function openCart() {
-      if (!user) return openPanel('login');
-      await loadCart();
-      openPanel('cart');
-    }
-
-    async function loadCart() {
-      const itemsEl = document.getElementById('cartItems');
-      const foot = document.getElementById('cartFooter');
-      if (itemsEl) itemsEl.innerHTML = 'Loading...';
-      try {
-        const data = await fetchJSON(`${API_BASE}/cart?mobile=${encodeURIComponent(user.mobile)}`);
-        const items = data.items || [];
-        if (!items.length) {
-          itemsEl.innerHTML = '<div class="empty">🛒 Cart khaali hai</div>';
-          foot.innerHTML = '';
-          return;
-        }
-        itemsEl.innerHTML = items.map((item) => `
-      <div class="cart-item">
-        <div class="cart-item-img">
-          <div class="cart-item-img-fallback">${escapeHtml((item.product?.name || 'P')[0])}</div>
-        </div>
-        <div class="cart-item-info">
-          <div class="cart-item-name">${escapeHtml(item.product?.name || 'Unknown')}</div>
-          <div class="cart-item-price">${(item.product?.price || 0)} / item</div>
-          <div class="qty-ctrl">
-            <button class="qty-btn" onclick="updateCart('${item.cartItemId}', -1)">−</button>
-            <span class="qty-num">${item.quantity}</span>
-            <button class="qty-btn" onclick="updateCart('${item.cartItemId}', 1)">+</button>
-            <button class="remove-btn" onclick="removeCart('${item.cartItemId}')">🗑</button>
-          </div>
-        </div>
-      </div>`).join('');
-        foot.innerHTML = `
-      <div class="cart-total">
-        <div class="total-row"><span>Total</span><span>${data.total || 0}</span></div>
-      </div>
-      <button class="btn-primary" style="margin-top:12px" onclick="openPanel('checkout')">Checkout Karo →</button>
-    `;
-      } catch (err) {
-        if (itemsEl) itemsEl.innerHTML = '<div class="empty">Cart load failed.</div>';
-        if (foot) foot.innerHTML = '';
-        showToast('Cart load failed: ' + err.message);
-      }
-    }
-
-    async function addToCart(productId, qty = 1) {
-      if (!user) return openPanel('login');
-      try {
-        await fetchJSON(`${API_BASE}/cart`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mobile: user.mobile, productId, quantity: qty })
-        });
-        showToast('Cart updated');
-        updateCartCount();
-      } catch (err) {
-        showToast('Add to cart failed: ' + err.message);
-      }
-    }
-
-    async function updateCart(cartItemId, delta) {
-      if (!user) return openPanel('login');
-      try {
-        const data = await fetchJSON(`${API_BASE}/cart?mobile=${encodeURIComponent(user.mobile)}`);
-        const item = (data.items || []).find((i) => i.cartItemId === cartItemId);
-        if (!item) return showToast('Item not found in cart');
-        const newQty = Math.max(0, item.quantity + delta);
-        await fetchJSON(`${API_BASE}/cart`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mobile: user.mobile, cartItemId, quantity: newQty })
-        });
-        await loadCart();
-        updateCartCount();
-      } catch (err) {
-        showToast('Update failed: ' + err.message);
-      }
-    }
-
-    async function removeCart(cartItemId) {
-      if (!user) return openPanel('login');
-      try {
-        await fetchJSON(`${API_BASE}/cart/${encodeURIComponent(cartItemId)}?mobile=${encodeURIComponent(user.mobile)}`, {
-          method: 'DELETE'
-        });
-        await loadCart();
-        updateCartCount();
-      } catch (err) {
-        showToast('Remove failed: ' + err.message);
-      }
-    }
-
-    function selectPay(el) {
-      document.querySelectorAll('.pay-opt').forEach((p) => p.classList.remove('selected'));
-      if (el) {
-        el.classList.add('selected');
-      }
-    }
-
-    function switchTab(tab, el) {
-      document.querySelectorAll('.auth-tab').forEach((t) => t.classList.remove('active'));
-      if (el) el.classList.add('active');
-      document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
-      document.getElementById('signupForm').style.display = tab === 'signup' ? 'block' : 'none';
-    }
-
-    async function placeOrder() {
-      if (!user) return openPanel('login');
-      const address = {
-        village: document.getElementById('co_village').value.trim(),
-        city: document.getElementById('co_city').value.trim(),
-        state: document.getElementById('co_state').value.trim(),
-        pincode: document.getElementById('co_pincode').value.trim(),
-        mobile: document.getElementById('co_mobile').value.trim()
-      };
-      const paymentMethod = document.querySelector('.pay-opt.selected')?.getAttribute('data-pay') || 'cod';
-      if (!address.village || !address.city || !address.pincode || !address.mobile) return showToast('Delivery details complete karo');
-      try {
-        const data = await fetchJSON(`${API_BASE}/orders`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mobile: user.mobile, address, paymentMethod })
-        });
-        showToast('Order placed: ' + data.orderId);
-        closePanel('checkout');
-      } catch (err) {
-        showToast('Order failed: ' + err.message);
-      }
-    }
-
-    async function trackOrder() {
-      const id = document.getElementById('trackInput').value.trim();
-      console.log('Tracking ID:', id);
-      if (!id) return showToast('Order ID daalo');
-      try {
-        const data = await fetchJSON(`${API_BASE}/track/${encodeURIComponent(id)}`);
-        const out = document.getElementById('trackResult');
-        if (out) {
-          out.innerHTML = `<div style="margin-top:14px;padding:12px;background:var(--green-light);border-radius:8px;margin-bottom:12px"><div style="font-family:'Baloo 2',sans-serif;font-weight:700;color:var(--green)">${escapeHtml(data.orderId)}</div><div style="font-size:12px;color:var(--text-muted)">Status: ${escapeHtml(data.status)}</div></div><pre style="white-space:pre-wrap;">${escapeHtml(JSON.stringify(data.timeline || [], null, 2))}</pre>`;
-        }
-      } catch (err) {
-        showToast('Track failed: ' + err.message);
-      }
-    }
-
-    document.addEventListener('click', (e) => {
-      const pay = e.target.closest('.pay-opt');
-      if (pay) selectPay(pay);
-    });
-
-    updateAuthUI();
-    loadProducts();
-    updateCartCount();
-  </script>
-
+  <script src="js/app.js"></script>
 </body>
 
 </html>

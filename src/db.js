@@ -7,6 +7,7 @@ const products = [
     rating: 4.7,
     popular: 120,
     stock: 45,
+    imageUrl: 'images/products/urea-khaad.jpeg',
     description: 'Nitrogen rich fertilizer for high-yield crops.'
   },
   {
@@ -17,6 +18,7 @@ const products = [
     rating: 4.6,
     popular: 98,
     stock: 30,
+    imageUrl: 'images/products/gehu-beej.jpeg',
     description: 'High quality wheat seed for best germination.'
   },
   {
@@ -27,6 +29,7 @@ const products = [
     rating: 4.4,
     popular: 80,
     stock: 55,
+    imageUrl: 'images/products/herbal-pesticide.jpeg',
     description: 'Safe pesticide for vegetables and fruits.'
   },
   {
@@ -37,6 +40,7 @@ const products = [
     rating: 4.8,
     popular: 70,
     stock: 22,
+    imageUrl: 'images/products/manual-sprayer.jpeg',
     description: 'Lightweight sprayer for ease of use in fields.'
   },
   {
@@ -47,6 +51,7 @@ const products = [
     rating: 4.5,
     popular: 65,
     stock: 18,
+    imageUrl: 'images/products/potash-khaad.jpeg',
     description: 'Potassium rich fertilizer for stronger stems.'
   },
   {
@@ -57,6 +62,7 @@ const products = [
     rating: 4.3,
     popular: 40,
     stock: 12,
+    imageUrl: 'images/products/seed-drill.jpeg',
     description: 'Easy-to-use seed drill for planting efficiency.'
   }
 ];
